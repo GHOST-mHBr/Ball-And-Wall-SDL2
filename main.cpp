@@ -123,12 +123,13 @@ int main()
 
         if(ball_center.x - BALL_R < 0){
             ball_dx *= -1;
+			ball_center.x= BALL_R;
         }
         if(ball_center.y + BALL_R > HEIGHT){
-            ball_dy = -BALL_DY;
+            ball_dy *= -1;
         }
         if(ball_center.y - BALL_R < 0){
-            ball_dy = BALL_DY;
+            ball_dy *= -1 ;
         }
 
         ball_center.x += ball_dx;
@@ -166,16 +167,28 @@ int main()
                     should_loop = false;
                 }
                 if(event.key.keysym.sym == 'd'){
-                	ball_dx +=1;
+					if(ball_dx >= 0)
+                		ball_dx += 1;
+					else
+						ball_dx -= 1;
                 }
                 if(event.key.keysym.sym == 'a'){
-                	ball_dx -=1;
+                	if(ball_dx >= 0)
+						ball_dx -=1;
+					else
+						ball_dx +=1;
                 }
                 if(event.key.keysym.sym == 'w'){
-                	ball_dy-=1;
+					if(ball_dy > 0)
+                		ball_dy-=1;
+					else
+						ball_dy+=1;
                 }
                 if(event.key.keysym.sym == 's'){
-                	ball_dy+=1;
+                	if(ball_dy > 0)
+						ball_dy+=1;
+					else
+						ball_dy-=1;
                 }
                 break;
             }
